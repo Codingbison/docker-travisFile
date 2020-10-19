@@ -5,3 +5,13 @@ services:
 script:
     - docker build -t codingbison/node . 
     - docker images codingbison/node
+
+before_deploy:
+    - docker login -u codingbison -p aliali1963
+
+deploy:
+    provider: script
+    script: docker push codingbison/node
+    on:
+        branch: master
+
